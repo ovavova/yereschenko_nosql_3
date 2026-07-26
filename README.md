@@ -51,6 +51,7 @@
 Між ними використовуються зв’язки:
 
 **RATED** — користувач оцінив фільм;
+
 **HAS_GENRE** — фільм належить до жанру.
 ```
 (User { userId, gender, age, occupation, zipCode })
