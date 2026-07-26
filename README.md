@@ -61,3 +61,14 @@
 (User)-[:RATED { rating, timestamp }]->(:Movie)
 (Movie)-[:HAS_GENRE]->(:Genre)
 ```
+
+## Завантаження вузлів
+
+
+
+індекси:
+```
+CREATE CONSTRAINT user_id_unique IF NOT EXISTS FOR (u:User) REQUIRE u.userId IS UNIQUE; 
+CREATE CONSTRAINT movie_id_unique IF NOT EXISTS FOR (m:Movie) REQUIRE m.movieId IS UNIQUE; 
+CREATE CONSTRAINT genre_name_unique IF NOT EXISTS FOR (g:Genre) REQUIRE g.name IS UNIQUE;
+```
