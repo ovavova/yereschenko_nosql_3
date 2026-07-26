@@ -52,3 +52,11 @@
 
 **RATED** — користувач оцінив фільм;
 **HAS_GENRE** — фільм належить до жанру.
+```
+(User { userId, gender, age, occupation, zipCode })
+(Movie { movieId, title, year })
+(Genre { name })
+
+(User)-[:RATED { rating, timestamp }]->(:Movie)
+(Movie)-[:HAS_GENRE]->(:Genre)
+```
