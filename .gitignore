@@ -1,0 +1,15 @@
+# Virtual environment
+.venv/
+
+# uv & Ruff caches
+.uv/
+.ruff_cache/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# data
+import/
