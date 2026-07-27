@@ -66,9 +66,37 @@
 
 
 
-індекси:
+## індекси:
 ```
 CREATE CONSTRAINT user_id_unique IF NOT EXISTS FOR (u:User) REQUIRE u.userId IS UNIQUE; 
 CREATE CONSTRAINT movie_id_unique IF NOT EXISTS FOR (m:Movie) REQUIRE m.movieId IS UNIQUE; 
 CREATE CONSTRAINT genre_name_unique IF NOT EXISTS FOR (g:Genre) REQUIRE g.name IS UNIQUE;
 ```
+
+## Завантаження ребер (оцінок)
+
+Завантаження ребер RATED
+
+Оцінки у ratings.csv: userId,movieId,rating,timestamp
+
+Зв’язок: (:User)-[:RATED {rating, timestamp}]->(:Movie)
+
+як зазначено в завданні для великої кількості оцінок використовуємо apoc.periodic.iterate - див part2_load.cypher
+
+
+Два Cypher-запити:
+дані:
+LOAD CSV WITH HEADERS FROM 'file:///ratings.csv' AS row
+RETURN row
+та передаєм кожен рядок з них у другий запит для обробки оцінок:
+
+MATCH (u:User {userId: toInteger(row.userId)})
+MATCH (m:Movie {movieId: toInteger(row.movieId)})
+MERGE (u)-[r:RATED]->(m)
+SET
+    r.rating = toInteger(row.rating),
+    r.timestamp = toInteger(row.timestamp)
+
+використовуємо MATCH що знаходить вже створені вузли користувача та фільму по ID.
+
+**parallel: false** означає, що батчі виконуються послідовно для того щоб безпечно додавати без блокування: паралельні транзакції можуть одночасно блокувати популярні фільми чи користувачів - більша стабільність і це є безпечним режимом за замовчуванням. 
