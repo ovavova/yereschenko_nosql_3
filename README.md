@@ -69,6 +69,11 @@
 ![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/load_ratings.png)
 
 ![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/load_users.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/chk_load_count.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/chk_load_format.png)
+
 ## індекси:
 ```
 CREATE CONSTRAINT user_id_unique IF NOT EXISTS FOR (u:User) REQUIRE u.userId IS UNIQUE; 
@@ -89,6 +94,7 @@ CREATE CONSTRAINT genre_name_unique IF NOT EXISTS FOR (g:Genre) REQUIRE g.name I
 
 Два Cypher-запити:
 дані:
+
 LOAD CSV WITH HEADERS FROM 'file:///ratings.csv' AS row
 RETURN row
 та передаєм кожен рядок з них у другий запит для обробки оцінок:
@@ -106,6 +112,18 @@ SET
 
 
 #Частина 3 — Запити різної складності
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/prt3-thriller.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/prt3-rating5.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/prt3-3.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/prt3-4.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/prt3-5.png)
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/prt3-6.png)
 
 
 
@@ -133,6 +151,8 @@ User 1 → Movie A ← User 3
 Тут три фільми, два користувачі та шість ребер RATED.
 
 # Частина 4 — Виявлення супервузлів
+
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/p4-supernodes.png)
 
 ## Результат 5.1
 ```
@@ -165,6 +185,8 @@ movieId, title, pageRank
 
 ### 5.2 Louvain 
 
+
+```
 communityId, usersCount, topGenres
 5099, 238, [{genre: "Drama", highRatings: 26375}, {genre: "Comedy", highRatings: 18136}, {genre: "Action", highRatings: 11846}]
 5681, 200, [{genre: "Comedy", highRatings: 22244}, {genre: "Drama", highRatings: 20130}, {genre: "Action", highRatings: 17682}]
@@ -176,6 +198,7 @@ communityId, usersCount, topGenres
 6, 1, [{genre: "Action", highRatings: 24}, {genre: "Thriller", highRatings: 14}, {genre: "Sci-Fi", highRatings: 9}]
 7, 1, [{genre: "Drama", highRatings: 62}, {genre: "Action", highRatings: 23}, {genre: "Romance", highRatings: 22}]
 8, 1, [{genre: "Drama", highRatings: 36}, {genre: "Comedy", highRatings: 19}, {genre: "Thriller", highRatings: 18}]
+```
 
 **Чи відповідають отримані кластери інтуїтивним групам (наприклад, «любителі бойовиків», «цінителі арт-хаусу»)?**
 так - найбільші групи любителів драми, комедій, action бойовиків
