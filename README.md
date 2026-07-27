@@ -64,8 +64,11 @@
 
 ## Завантаження вузлів
 
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/load_movies.png)
 
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/load_ratings.png)
 
+![image alt](https://github.com/ovavova/yereschenko_nosql_3/blob/main/screenshots4readme/load_users.png)
 ## індекси:
 ```
 CREATE CONSTRAINT user_id_unique IF NOT EXISTS FOR (u:User) REQUIRE u.userId IS UNIQUE; 
